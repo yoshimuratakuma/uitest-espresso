@@ -24,11 +24,5 @@ class OperatorTest {
 
     @Test
     fun calcTextNumber_given_validValues_returnsSuccess() {
-        val stubValidator = StubValidator(isNumber = true, isOperator = true)
-        val input = Operator.InputNumbers("11", "100", "+")
-
-        val actual = Operator().calcTextNumber(input, stubValidator)
-        assertThat(actual.first == Operator.CalcResult.SUCCESS, `is`(true))
-        assertThat(actual.second == "111", `is`(true))
     }
 }
