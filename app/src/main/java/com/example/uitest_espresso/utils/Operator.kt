@@ -1,13 +1,6 @@
 package com.example.uitest_espresso.utils
 
 class Operator {
-
-    data class InputNumbers(
-        val num1: String,
-        val num2: String,
-        val operator: String
-    )
-
     fun calc(input: InputNumbers): String {
         return when (input.operator) {
             "+" -> (input.num1.toInt() + input.num2.toInt()).toString()

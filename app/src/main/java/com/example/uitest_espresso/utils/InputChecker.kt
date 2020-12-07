@@ -4,7 +4,7 @@ open class InputChecker {
 
     var errMsg: String = ""
 
-    open fun canCalc(input: Operator.InputNumbers, validator: Validator): Boolean {
+    open fun canCalc(input: InputNumbers, validator: Validator): Boolean {
         if (!validator.isValidNumber(input.num1)) {
             errMsg = "数字を入力してください"
             return false
