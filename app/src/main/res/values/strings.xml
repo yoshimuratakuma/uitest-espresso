@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">uitest-espresso</string>
+    <string name="calc">計算</string>
 </resources>
