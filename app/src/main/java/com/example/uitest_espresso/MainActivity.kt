@@ -19,7 +19,8 @@ class MainActivity : AppCompatActivity() {
             text_error.text = ""
             text_answer.text = ""
 
-            val calcResult = Operator().calcTextNumber(edit_num1.text.toString(), edit_num2.text.toString(), edit_operator.text.toString())
+            val input = Operator.InputNumbers(edit_num1.text.toString(), edit_num2.text.toString(), edit_operator.text.toString())
+            val calcResult = Operator().calcTextNumber(input, Validator())
             when (calcResult.first) {
                 Operator.CalcResult.SUCCESS -> {
                     text_answer.text = calcResult.second

@@ -9,27 +9,32 @@ class Operator {
         FAIL_ZERO_DEVISION
     }
 
-    fun calcTextNumber(strNum1: String, strNum2: String, operator: String): Pair<CalcResult, String> {
-        val validator = Validator()
-        if (!validator.isValidNumber(strNum1)) {
+    data class InputNumbers(
+        val num1: String,
+        val num2: String,
+        val operator: String
+    )
+
+    fun calcTextNumber(input: InputNumbers, validator: Validator): Pair<CalcResult, String> {
+        if (!validator.isValidNumber(input.num1)) {
             return CalcResult.FAIL_NUMBER_VALIDATOR to "数字を入力してください"
         }
-        if (!validator.isValidNumber(strNum2)) {
+        if (!validator.isValidNumber(input.num2)) {
             return CalcResult.FAIL_NUMBER_VALIDATOR to "数字を入力してください"
         }
-        if (!validator.isValidOperator(operator)) {
+        if (!validator.isValidOperator(input.operator)) {
             return CalcResult.FAIL_OPERATOR_VALIDATOR to "+, -, *, /のいずれかを入力してください"
         }
-        if (operator == "/" && strNum2 == "0") {
-            return CalcResult.FAIL_ZERO_DEVISION to "+, -, *, /のいずれかを入力してください"
+        if (input.operator == "/" && input.num2 == "0") {
+            return CalcResult.FAIL_ZERO_DEVISION to "0で割らないでください"
         }
 
-        return when (operator) {
-            "+" -> CalcResult.SUCCESS to (strNum1.toInt() + strNum2.toInt()).toString()
-            "-" -> CalcResult.SUCCESS to (strNum1.toInt() - strNum2.toInt()).toString()
-            "*" -> CalcResult.SUCCESS to (strNum1.toInt() * strNum2.toInt()).toString()
-            "/" -> CalcResult.SUCCESS to (strNum1.toInt() / strNum2.toInt()).toString()
-            else -> CalcResult.SUCCESS to (strNum1.toFloat() + strNum2.toFloat()).toString()
+        return when (input.operator) {
+            "+" -> CalcResult.SUCCESS to (input.num1.toInt() + input.num2.toInt()).toString()
+            "-" -> CalcResult.SUCCESS to (input.num1.toInt() - input.num2.toInt()).toString()
+            "*" -> CalcResult.SUCCESS to (input.num1.toInt() * input.num1.toInt()).toString()
+            "/" -> CalcResult.SUCCESS to (input.num1.toFloat() / input.num2.toFloat()).toString()
+            else -> CalcResult.SUCCESS to (input.num1.toInt() + input.num2.toInt()).toString()
         }
     }
 }
